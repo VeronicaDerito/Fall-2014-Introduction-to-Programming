@@ -6,32 +6,68 @@
       </title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<script type = "text/javascript">
-		function btnGo_click() 
-           
+		
+		function btnNorth_click() 	
+		{var message = "You enter the north entrance and end up in a room of books."
+		var targetTextArea = document.getElementById("taMain");
+		targetTextArea.value = message;
+		}      
+		function btnSouth_click() 
+		{var message = "You enter the south entrance and ."
+		var targetTextArea = document.getElementById("taMain");
+		targetTextArea.value = message;
+		} 
+		function btnEast_click() 
+		{var message = "You enter the east entrance and end up."
+		var targetTextArea = document.getElementById("taMain");
+		targetTextArea.value = message;
+		} 
+		function btnWest_click() 
+		{var message = "You enter the west entrance and end up."
+		var targetTextArea = document.getElementById("taMain");
+		targetTextArea.value = message;
+		} 
       </script>
 	
 	</head>
 	  
 	<body>
-		<h1> Planes, Trains, and Automobiles </h1>
+		<h1> Caves of Karkarog </h1>
 		
 			<p> Email any questions!
 			<a href="mailto:vderito2@gmail.com">Send Mail</a>
 			</p>
 	
-	<textarea rows="10" cols="60">It is December 23rd, you are at Wendy's, and you are desperately trying to get home for Christmas.
+	<textarea 
+	rows="10" 
+	cols="60" 
+	id ="taMain"
+	name = "taMain">You are walking through a forest when you spot an aggressive bear. While looking for an escape you spot a hole in the ground a few feet away and quickly lower yourself down through the opening. You are now in a cavern with tunnel entrances to the north, south, east, and west.
     </textarea>
 	
 	<br>
 	<br>
 	
-	Command:
-	<input = "text"
-		id = "userResponse" />
 	
 	<input 	type="button"
-			value="Go" 
-			onclick="btnGo_click();" 
+			value="North" 
+			id = "btnNorth"
+			onclick="btnNorth_click();" />
+			
+	<input 	type="button"
+			value="South"
+			id ="btnSouth"
+			onclick="btnSouth_click();" 
+			/>
+	<input 	type="button"
+			value="East"
+			id ="btnEast"
+			onclick="btnEast_click();" 
+			/>
+	<input 	type="button"
+			value="West" 
+			id="btnWest"
+			onclick="btnWest_click();" 
 			/>
 	
 	
