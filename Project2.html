@@ -6,27 +6,99 @@
       </title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<script type = "text/javascript">
+  
+		var currentLocation = 0;
+  
+		function btnNorth_click() {	
+           goNorth();
+		}
+		  
+		function btnSouth_click() {
+			goSouth();
+		}
 		
-		function btnNorth_click() 	
-		{var message = "You enter the north entrance and end up in a room of books."
-		var targetTextArea = document.getElementById("taMain");
-		targetTextArea.value = message;
-		}      
-		function btnSouth_click() 
-		{var message = "You enter the south entrance and ."
-		var targetTextArea = document.getElementById("taMain");
-		targetTextArea.value = message;
+		function btnEast_click() {
+			goEast();
+		}
+		
+		function btnWest_click() {
+			goWest();
+		}
+
+		function goNorth() {
+		   if (currentLocation === 0) {
+				currentLocation = 1;
+				var message = "You enter the north entrance and end up in a room of books."
+				} else {
+			if (currentLocation === 3) {
+				currentLocation = 0;
+				var message = "You enter the main cavern with passages leading to the north, south, east, and west."
+				} else { 
+			if (currentLocation === 1) {
+				currentLocation = 1;
+				var message = "You can't go that way!"
+										}
+									}
+				var targetTextArea = document.getElementById("taMain");
+				targetTextArea.value = message;		   
+		   }
+		}
+		function goSouth() {
+			if (currentLocation === 0)  {
+				currentLocation = 3;
+				var message = "You enter the south entrance and end up in a room of wasps."	
+				} else {
+			if (currentLocation === 1) {
+				currentLocation = 0;
+				var message = "You enter the main cavern with passages leading to the north, south, east, and west."				
+				} else {
+			if (currentLocation === 3) {
+				currentLocation = 3; 
+				var message = "You can't go that way!"
+									}
+								}
+				var targetTextArea = document.getElementById("taMain");
+				targetTextArea.value = message;
+			}
+		}
+		function goEast() {
+			if (currentLocation === 0) {
+				currentLocation = 4;
+				var message = "You enter the east entrance and end up in a golden room."
+				} else {
+			if (currentLocation === 2) {
+				currentLocation = 0;
+				var message = "You enter the main cavern with passages leading to the north, south, east, and west."
+				} else {
+			if (currentLocation === 4)	{
+				currentLocation = 4; 
+				var message = "You can't go that way!"
+										}
+									}
+				var targetTextArea = document.getElementById("taMain");
+				targetTextArea.value = message;
+			}
 		} 
-		function btnEast_click() 
-		{var message = "You enter the east entrance and end up."
-		var targetTextArea = document.getElementById("taMain");
-		targetTextArea.value = message;
-		} 
-		function btnWest_click() 
-		{var message = "You enter the west entrance and end up."
-		var targetTextArea = document.getElementById("taMain");
-		targetTextArea.value = message;
-		} 
+		function goWest() {
+			if (currentLocation === 0)	{
+				currentLocation = 2;
+				var message = "You enter the west entrance and end up in a room with a hungry giant."
+				} else {
+			if (currentLocation === 4)	{
+				currentLocation = 0;
+				var message = "You enter the main cavern with passages leading to the north, south, east, and west."
+				} else {
+			if (currentLocation === 2)  {
+				currentLocation = 2;
+				var message = "You can't go that way!" 
+											}
+										}
+				var targetTextArea = document.getElementById("taMain");
+				targetTextArea.value = message;
+			}
+		}
+		
+       
       </script>
 	
 	</head>
@@ -38,12 +110,23 @@
 			<a href="mailto:vderito2@gmail.com">Send Mail</a>
 			</p>
 	
-	<textarea 
-	rows="10" 
-	cols="60" 
-	id ="taMain"
-	name = "taMain">You are walking through a forest when you spot an aggressive bear. While looking for an escape you spot a hole in the ground a few feet away and quickly lower yourself down through the opening. You are now in a cavern with tunnel entrances to the north, south, east, and west.
-    </textarea>
+	Score:
+	<br>
+			<textarea 
+			rows="1" 
+			cols="4" 
+			id ="taScore"
+			name = "taScore"> 
+			</textarea>
+	
+	<br>
+	<br>
+			<textarea 
+			rows="10" 
+			cols="60" 
+			id ="taMain"
+			name = "taMain">You are walking through a forest when you spot an aggressive bear. While looking for an escape you spot a hole in the ground a few feet away and quickly lower yourself down through the opening. You are now in a cavern with tunnel entrances to the north, south, east, and west.
+			</textarea>
 	
 	<br>
 	<br>
@@ -51,24 +134,26 @@
 	
 	<input 	type="button"
 			value="North" 
-			id = "btnNorth"
-			onclick="btnNorth_click();" />
+			id ="btnNorth"
+			onclick="btnNorth_click();"/>
 			
 	<input 	type="button"
 			value="South"
 			id ="btnSouth"
-			onclick="btnSouth_click();" 
-			/>
+			onclick="btnSouth_click();" />
+			
 	<input 	type="button"
 			value="East"
 			id ="btnEast"
-			onclick="btnEast_click();" 
-			/>
+			onclick="btnEast_click();" />
+			
 	<input 	type="button"
 			value="West" 
 			id="btnWest"
-			onclick="btnWest_click();" 
-			/>
+			onclick="btnWest_click();" />
+	<br>
+	<br>		
+			
 	
 	
 	</body>
