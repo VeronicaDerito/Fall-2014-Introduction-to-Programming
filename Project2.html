@@ -8,6 +8,12 @@
 		<script type = "text/javascript">
   
 		var currentLocation = 0;
+		var Score = 0;
+		var visitedRoom1 = false;
+		var visitedRoom2 = false;
+		var visitedRoom3 = false;
+		var visitedRoom4 = false;
+		
   
 		function btnNorth_click() {	
            goNorth();
@@ -24,66 +30,116 @@
 		function btnWest_click() {
 			goWest();
 		}
+		
+		function displayMsg (message) {
+			var targetTextArea = document.getElementById("taMain");
+			targetTextArea.value += "\n" + message + "\n" + Score; 
+		}
 
 		function goNorth() {
 		   if (currentLocation === 0) {
-				currentLocation = 1;
-				var message = "You enter the north entrance and end up in a room of books.";
-				} else if (currentLocation === 3) {
-				currentLocation = 0;
-				var message = "You enter the main cavern with passages leading to the north, south, east, and west.";
-				} else if (currentLocation === 1) {
-				currentLocation = 1;
-				var message = "You can't go that way!";
-				}
-				var targetTextArea = document.getElementById("taMain");
-				targetTextArea.value = message;		   
-				}
+				  currentLocation = 1;
+				  var message = "You enter the north entrance and end up in a room of books.";				
+			} else if (currentLocation === 3) {
+				  currentLocation = 0;
+				  var message = "You enter the main cavern with passages leading to the north, south, east, and west.";
+			} else if (currentLocation === 1) {
+				  currentLocation = 1;
+				  var message = "You can't go that way!";
+			}
+		   if (visitedRoom1 === false) {
+					visitedRoom1 = true;
+					Score = Score + 5;
+			} else if (visitedRoom1 === true) {
+					Score = Score + 0;
+			}
+			
+			displayMsg (message);	
+					   
+		}
 		
 		function goSouth() {
 			if (currentLocation === 0)  {
-				currentLocation = 3;
-				var message = "You enter the south entrance and end up in a room of wasps.";	
-				} else if (currentLocation === 1) {
-				currentLocation = 0;
-				var message = "You enter the main cavern with passages leading to the north, south, east, and west.";				
-				} else if (currentLocation === 3) {
-				currentLocation = 3; 
-				var message = "You can't go that way!";
-				}
-				var targetTextArea = document.getElementById("taMain");
-				targetTextArea.value = message;
-				}
+				  currentLocation = 3;
+				  var message = "You enter the south entrance and end up in a room of wasps.";	
+			} else if (currentLocation === 1) {
+				  currentLocation = 0;
+				  var message = "You enter the main cavern with passages leading to the north, south, east, and west.";				
+			} else if (currentLocation === 3) {
+				  currentLocation = 3; 
+				  var message = "You can't go that way!";
+			} else if (currentLocation === 2)  {
+				  currentLocation = 2;
+				  var message = "You can't go that way!";
+			} else if (currentLocation === 4)  {
+				  currentLocation = 4;
+				  var message = "You can't go that way!";
+			} 
+			if (visitedRoom3 === false) {
+					Score = Score + 5;
+					visitedRoom3 = true;
+			} else if (visitedRoom3 === true) {
+					Score = Score + 0;
+			}
+			displayMsg (message);
+			
+		}
 		
 		function goEast() {
 			if (currentLocation === 0) {
-				currentLocation = 4;
-				var message = "You enter the east entrance and end up in a golden room.";
-				} else if (currentLocation === 2) {
-				currentLocation = 0;
-				var message = "You enter the main cavern with passages leading to the north, south, east, and west.";
-				} else if (currentLocation === 4)	{
-				currentLocation = 4; 
-				var message = "You can't go that way!";
-				}
-				var targetTextArea = document.getElementById("taMain");
-				targetTextArea.value = message;
-				}
+				  currentLocation = 4;
+				  var message = "You enter the east entrance and end up in a golden room.";
+			} else if (currentLocation === 2) {
+				  currentLocation = 0;
+				  var message = "You enter the main cavern with passages leading to the north, south, east, and west.";
+			} else if (currentLocation === 4)	{
+				  currentLocation = 4; 
+				  var message = "You can't go that way!";
+			} else if (currentLocation === 3)  {
+				  currentLocation = 3;
+				  var message = "You can't go that way!";
+			} else if (currentLocation === 1)  {
+				  currentLocation = 1;
+				  var message = "You can't go that way!";
+			}
+		
+			if (visitedRoom4 === false) {
+					Score = Score + 5;
+					visitedRoom4 = true;
+			} else if (visitedRoom4 === true) {
+					Score = Score + 0;
+			}
+		
+			displayMsg (message);
+		}
 		 
 		function goWest() {
 			if (currentLocation === 0)	{
-				currentLocation = 2;
-				var message = "You enter the west entrance and end up in a room with a hungry giant.";
-				} else if (currentLocation === 4)	{
-				currentLocation = 0;
-				var message = "You enter the main cavern with passages leading to the north, south, east, and west.";
-				} else if (currentLocation === 2)  {
-				currentLocation = 2;
-				var message = "You can't go that way!"; 
-				}						
-				var targetTextArea = document.getElementById("taMain");
-				targetTextArea.value = message;
-				}
+				  currentLocation = 2;
+				  var message = "You enter the west entrance and end up in a room with a hungry giant.";
+			} else if (currentLocation === 4)	{
+				  currentLocation = 0;
+				  var message = "You enter the main cavern with passages leading to the north, south, east, and west.";
+			} else if (currentLocation === 2)  {
+				  currentLocation = 2;
+				  var message = "You can't go that way!"; 
+			} else if (currentLocation === 1)  {
+				  currentLocation = 1;
+				  var message = "You can't go that way!";
+			} else if (currentLocation === 3)  {
+				  currentLocation = 3;
+				  var message = "You can't go that way!";
+			}
+			
+			if (visitedRoom2 === false) {
+					visitedRoom2 = true;
+					Score = Score + 5;
+			} else if (visitedRoom2 === true) {
+					Score = Score + 0;
+			}
+			
+			displayMsg (message);
+		}
 		
 		
        
@@ -92,20 +148,12 @@
 	</head>
 	  
 	<body>
-		<h1> Caves of Karkarog </h1>
+		<h1> Caves of Karkarog (Car-ka-rog) </h1>
 		
 			<p> Email any questions!
 			<a href="mailto:vderito2@gmail.com">Send Mail</a>
 			</p>
-	
-	Score:
-	<br>
-			<textarea 
-			rows="1" 
-			cols="4" 
-			id ="taScore"
-			name = "taScore"> 
-			</textarea>
+			
 	
 	<br>
 	<br>
@@ -123,7 +171,7 @@
 	<input  type = "button"
 			value="North" 
 			id ="btnNorth"
-			onclick="btnNorth_click"  />
+			onclick="btnNorth_click()"  />
 			
 	<input 	type="button"
 			value="South"
