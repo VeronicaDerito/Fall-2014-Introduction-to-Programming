@@ -9,16 +9,15 @@
   
 		var currentLocation = 0;
 		var Score = 0;
+		var visitedRoom0 = false;
 		var visitedRoom1 = false;
 		var visitedRoom2 = false;
 		var visitedRoom3 = false;
 		var visitedRoom4 = false;
-		
 		function init() {
 			look();
 		}
-		
-  
+			
 		function btnNorth_click() {	
            goNorth();
 		}
@@ -41,16 +40,10 @@
 		   if (currentLocation === 0) {
 				  currentLocation = 1;			
 			} else if (currentLocation === 3) {
-				  currentLocation = 0;
-			} else if (currentLocation === 1) {
+				  currentLocation = 0;	
+			} else if (currentLocation = 1) {
 				  currentLocation = 1;
-				}
-		   if (visitedRoom1 === false) {
-					visitedRoom1 = true;
-					Score = Score + 5;
-			} else if (visitedRoom1 === true) {
-					Score = Score + 0;
-			}
+			}		
 			look();	
 					   
 		}
@@ -59,16 +52,9 @@
 			if (currentLocation === 0)  {
 				  currentLocation = 3;
 			} else if (currentLocation === 1) {
-				  currentLocation = 0;  			
-			} else if (currentLocation === 3) {
-				  currentLocation = 3; 
+				  currentLocation = 0;  			 
 			} 
-			if (visitedRoom3 === false) {
-					Score = Score + 5;
-					visitedRoom3 = true;
-			} else if (visitedRoom3 === true) {
-					Score = Score + 0;
-			}
+			
 			look ();
 			
 		}
@@ -78,20 +64,8 @@
 				  currentLocation = 4;
 			} else if (currentLocation === 2) {
 				  currentLocation = 0; 
-			} else if (currentLocation === 4)	{
-				  currentLocation = 4; 
-			} else if (currentLocation === 3)  {
-				  currentLocation = 3;
-			} else if (currentLocation === 1)  {
-				  currentLocation = 1;
 			}
-			if (visitedRoom4 === false) {
-					Score = Score + 5;
-					visitedRoom4 = true;
-			} else if (visitedRoom4 === true) {
-					Score = Score + 0;
-			}
-		
+			
 			look();
 		}
 		 
@@ -100,20 +74,8 @@
 				  currentLocation = 2;
 			} else if (currentLocation === 4)	{
 				  currentLocation = 0;
-			} else if (currentLocation === 2)  {
-				  currentLocation = 2;
-			} else if (currentLocation === 1)  {
-				  currentLocation = 1;
-			} else if (currentLocation === 3)  {
-				  currentLocation = 3;
 			}
-			if (visitedRoom2 === false) {
-					visitedRoom2 = true;
-					Score = Score + 5;
-			} else if (visitedRoom2 === true) {
-					Score = Score + 0;
-			}
-			
+	
 			look();
 		}
 		
@@ -130,19 +92,37 @@
 						break;
 				case 4: desc = "You enter the east entrance and end up in a golden room.";
 						break;
-				default: desc = "You can't go that way!";
+				default: desc = "You can't go that way!";		
 			}
+			checkScore();
+			desc = desc + "\n" + "Score: " + Score;
 			displayMessage(desc);
 		}
-	
+		
+		function checkScore() {
+		 if ( (! visitedRoom1) && (currentLocation === 1) ) {
+				Score = Score + 5;
+				visitedRoom1 = true;
+			
+		}	else if ( (! visitedRoom2) && (currentLocation === 2) ) {
+				Score = Score + 5;
+				visitedRoom2 = true;
+		}	else if ( (! visitedRoom3) && (currentLocation === 3) ) {
+				Score = Score + 5;
+				visitedRoom3 = true;
+		}	else if ( (! visitedRoom4) && (currentLocation === 4) ) {
+				Score = Score + 5;
+				visitedRoom4 = true;
+			}
+		}
 		function displayMessage(message) {
 			var targetTextArea = document.getElementById("taMain");
-			targetTextArea.value = message + Score + "\n\n" + targetTextArea.value; 
+			targetTextArea.value = message + "\n\n" + targetTextArea.value; 
 		}
 
 
 
-	 </script>
+	</script>
 	
 	</head>
 	  
@@ -166,7 +146,15 @@
 	<br>
 	<br>
 	
-	
+	<input  type="text"
+			id ="txtCommand"
+			name ="txtCommand" />
+			
+	<input type ="button"
+			value ="Go"
+			onclick= "btnGo_click();" />
+	<br>
+	</br>
 	<input  type = "button"
 			value="North" 
 			id ="btnNorth"
