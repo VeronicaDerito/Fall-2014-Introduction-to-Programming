@@ -14,13 +14,37 @@
 		var visitedRoom2 = false;
 		var visitedRoom3 = false;
 		var visitedRoom4 = false;
+		var visitedRoom5 = false;
+		var visitedRoom6 = false;
+		
 		function init() {
 			look();
 		}
+		
+		function btnGo_click() {
+			if (txtCommand.value === "n" || txtCommand.value === "N") {
+				goNorth(); 
+			} else if (txtCommand.value === "s" || txtCommand.value === "S") {
+				goSouth();
+			} else if (txtCommand.value === "e" || txtCommand.value === "E") {
+				goEast();
+			} else if (txtCommand.value === "w" || txtCommand.value === "W") {
+				goWest();
+			} else {
+			
+				displayMessage("Invalid command, dummy! Use N, n, S, s, E, e, W, w");
+				
+			}
+		}
+		
+		
+		
+		
 			
 		function btnNorth_click() {	
            goNorth();
 		}
+		
 		  
 		function btnSouth_click() {
 			goSouth();
@@ -37,13 +61,17 @@
 		
 
 		function goNorth() {
-		   if (currentLocation === 0) {
+		  if (currentLocation === 0) {
 				  currentLocation = 1;			
 			} else if (currentLocation === 3) {
 				  currentLocation = 0;	
-			} else if (currentLocation = 1) {
+			} else if (currentLocation === 1) {
 				  currentLocation = 1;
-			}		
+			} else if (currentLocation === 5) {
+				  currentLocation = 3;
+			} else if (currentLocation === 6) {
+				  currentLocation = 4;
+			}
 			look();	
 					   
 		}
@@ -53,7 +81,11 @@
 				  currentLocation = 3;
 			} else if (currentLocation === 1) {
 				  currentLocation = 0;  			 
-			} 
+			} else if (currentLocation === 3) {
+				  currentLocation = 5;
+			} else if (currentLocation === 4) {
+				  currentLocation = 6;
+			}
 			
 			look ();
 			
@@ -92,6 +124,10 @@
 						break;
 				case 4: desc = "You enter the east entrance and end up in a golden room.";
 						break;
+				case 5: desc = "You head further south and enter a room with a massive hive.";
+						break;
+				case 6: desc = "You enter a small room to the south that is stocked with insect killer.";
+						break;
 				default: desc = "You can't go that way!";		
 			}
 			checkScore();
@@ -113,6 +149,12 @@
 		}	else if ( (! visitedRoom4) && (currentLocation === 4) ) {
 				Score = Score + 5;
 				visitedRoom4 = true;
+		}	else if ( (! visitedRoom5) && (currentLocation === 5) ) {
+				Score = Score + 5;
+				visitedRoom5 = true;
+		}	else if ( (! visitedRoom6) && (currentLocation === 6) ) {
+				Score = Score + 5;
+				visitedRoom6 = true;
 			}
 		}
 		function displayMessage(message) {
