@@ -111,22 +111,57 @@
 			look();
 		}
 		
+		function mainCavern() {
+			var	desc = "You enter the main cavern with passages leading to the north, south, east, and west.";
+			displayMessage(desc);
+		}
+		
+		function chestRoom() {
+			var desc = "You enter the north entrance and  end up in a room with a massive chest. It is locked.";
+			displayMessage(desc);
+		}
+		
+		function libraryRoom () {
+			var desc = "You enter the west entrance and find a large library.";
+			displayMessage(desc);
+		}
+		
+		function waspRoom() {
+			var desc = "You enter the south entrance and end up in a room of wasps.";
+			displayMessage(desc);
+		}
+		
+		function hiveRoom() {
+			var desc = "You head further south and enter a room with a massive hive.";
+			displayMessage(desc);
+			
+		}
+		function oldLab() {
+			var desc = "You enter the east entrance and find yourself in an abandoned laboratory.";
+			displayMessage(desc);
+		}
+		
+		function supplyCloset () {
+			var desc = "You enter a small supply room to the south that is stocked with insect killer.";
+			displayMessage(desc);
+		}
+	
 		function look() {
 			var desc = "";
 			switch(currentLocation) {
-				case 0: desc = "You enter the main cavern with passages leading to the north, south, east, and west.";
+				case 0: mainCavern();
 						break;
-				case 1: desc = "You enter the north entrance and end up in a room of books.";
+				case 1: chestRoom();
 						break;
-				case 2: desc = "You enter the west entrance and end up in a room with a hungry giant.";
+				case 2: libraryRoom();
 						break;
-				case 3: desc = "You enter the south entrance and end up in a room of wasps.";
+				case 3: waspRoom();
 						break;
-				case 4: desc = "You enter the east entrance and end up in a golden room.";
+				case 4: oldLab();
 						break;
-				case 5: desc = "You head further south and enter a room with a massive hive.";
+				case 5: hiveRoom();
 						break;
-				case 6: desc = "You enter a small room to the south that is stocked with insect killer.";
+				case 6: supplyCloset();
 						break;
 				default: desc = "You can't go that way!";		
 			}
