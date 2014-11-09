@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>
+        Project 2 - Game V0.2
+      </title>
+      
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+      <script type = "text/javascript">
+      
+   // Introduction to Programming: Project 3
+   // Veronica deRito  10/23/14
+  
+      var currentLocation = 0;
+      var Score = 0;
+      var visitedRoom0 = false;
+      var visitedRoom1 = false;
+      var visitedRoom2 = false;
+      var visitedRoom3 = false;
+      var visitedRoom4 = false;
+      var visitedRoom5 = false;
+      var visitedRoom6 = false;
+      
+      function init() {
+         look();
+      }
+      
+      function btnGo_click() {
+         if (txtCommand.value === "n" || txtCommand.value === "N") {
+            goNorth(); 
+         } else if (txtCommand.value === "s" || txtCommand.value === "S") {
+            goSouth();
+         } else if (txtCommand.value === "e" || txtCommand.value === "E") {
+            goEast();
+         } else if (txtCommand.value === "w" || txtCommand.value === "W") {
+            goWest();
+         } else {
+         
+            displayMessage("Invalid command, dummy! Use N, n, S, s, E, e, W, w");
+            
+         }
+      }
+         
+      function btnNorth_click() {   
+           goNorth();
+      }
+       
+      function btnSouth_click() {
+         goSouth();
+      }
+      
+      function btnEast_click() {
+         goEast();
+      }
+      
+      function btnWest_click() {
+         goWest();
+      }
+      
+      function goNorth() {
+        if (currentLocation === 0) {
+              currentLocation = 1;         
+         } else if (currentLocation === 3) {
+              currentLocation = 0;   
+         } else if (currentLocation === 1) {
+              currentLocation = 1;
+         } else if (currentLocation === 5) {
+              currentLocation = 3;
+         } else if (currentLocation === 6) {
+              currentLocation = 4;
+         }
+         look();   
+                  
+      }
+      
+      function goSouth() {
+         if (currentLocation === 0)  {
+              currentLocation = 3;
+         } else if (currentLocation === 1) {
+              currentLocation = 0;            
+         } else if (currentLocation === 3) {
+              currentLocation = 5;
+         } else if (currentLocation === 4) {
+              currentLocation = 6;
+         }
+         
+         look ();
+         
+      }
+      
+      function goEast() {
+         if (currentLocation === 0) {
+              currentLocation = 4;
+         } else if (currentLocation === 2) {
+              currentLocation = 0; 
+         }
+         
+         look();
+      }
+       
+      function goWest() {
+         if (currentLocation === 0)   {
+              currentLocation = 2;
+         } else if (currentLocation === 4)   {
+              currentLocation = 0;
+         }
+   
+         look();
+      }
+      
+      function mainCavern() {
+         var   desc = "You enter the main cavern with passages leading to the north, south, east, and west.";
+         displayMessage(desc);
+      }
+      
+      function chestRoom() {
+         var desc = "You enter the north entrance and  end up in a room with a massive chest. It is locked.";
+         displayMessage(desc);
+      }
+      
+      function libraryRoom () {
+         var desc = "You enter the west entrance and find a large library.";
+         displayMessage(desc);
+      }
+      
+      function waspRoom() {
+         var desc = "You enter the south entrance and end up in a room of wasps.";
+         displayMessage(desc);
+      }
+      
+      function hiveRoom() {
+         var desc = "You head further south and enter a room with a massive hive.";
+         displayMessage(desc);
+         
+      }
+      
+      function oldLab() {
+         var desc = "You enter the east entrance and find yourself in an abandoned laboratory.";
+         displayMessage(desc);
+      }
+      
+      function supplyCloset () {
+         var desc = "You enter a small supply room to the south that is stocked with insect killer.";
+         displayMessage(desc);
+      }
+   
+      function look() {
+         var desc = "";
+         switch(currentLocation) {
+            case 0: mainCavern();
+                  break;
+            case 1: chestRoom();
+                  break;
+            case 2: libraryRoom();
+                  break;
+            case 3: waspRoom();
+                  break;
+            case 4: oldLab();
+                  break;
+            case 5: hiveRoom();
+                  break;
+            case 6: supplyCloset();
+                  break;
+            default: desc = "You can't go that way!";      
+         }
+         checkScore();
+         desc = desc + "\n" + "Score: " + Score;
+         displayMessage(desc);
+      }
+      
+      function checkScore() {
+       if ( (! visitedRoom1) && (currentLocation === 1) ) {
+            Score = Score + 5;
+            visitedRoom1 = true;
+         
+      }   else if ( (! visitedRoom2) && (currentLocation === 2) ) {
+            Score = Score + 5;
+            visitedRoom2 = true;
+      }   else if ( (! visitedRoom3) && (currentLocation === 3) ) {
+            Score = Score + 5;
+            visitedRoom3 = true;
+      }   else if ( (! visitedRoom4) && (currentLocation === 4) ) {
+            Score = Score + 5;
+            visitedRoom4 = true;
+      }   else if ( (! visitedRoom5) && (currentLocation === 5) ) {
+            Score = Score + 5;
+            visitedRoom5 = true;
+      }   else if ( (! visitedRoom6) && (currentLocation === 6) ) {
+            Score = Score + 5;
+            visitedRoom6 = true;
+         }
+      }
+      function displayMessage(message) {
+         var targetTextArea = document.getElementById("taMain");
+         targetTextArea.value = message + "\n\n" + targetTextArea.value; 
+      }
+
+
+
+   </script>
+   
+   </head>
+     
+   <body>
+      <h1> Caves of Karkarog (Car-ka-rog) </h1>
+      
+         <p> Email any questions!
+         <a href="mailto:vderito2@gmail.com">Send Mail</a>
+         </p>
+         
+   
+   <br>
+   <br>
+         <textarea 
+         rows="10" 
+         cols="60" 
+         id ="taMain"
+         readonly = "readonly"
+         name ="taMain">You are walking through a forest when you spot an aggressive bear. While looking for an escape you spot a hole in the ground a few feet away and quickly lower yourself down through the opening. You are now in a cavern with tunnel entrances to the north, south, east, and west.
+         </textarea>
+   
+   <br>
+   <br>
+   
+   <input  type="text"
+         id ="txtCommand"
+         name ="txtCommand" />
+         
+   <input type ="button"
+         value ="Go"
+         onclick= "btnGo_click();" />
+   <br>
+   <br>
+   <input  type = "button"
+         value="North" 
+         id ="btnNorth"
+         onclick="btnNorth_click()"  />
+         
+   <input    type="button"
+         value="South"
+         id ="btnSouth"
+         onclick="btnSouth_click()" />
+         
+   <input    type="button"
+         value="East"
+         id ="btnEast"
+         onclick="btnEast_click()" />
+         
+   <input    type="button"
+         value="West" 
+         id="btnWest"
+         onclick="btnWest_click()" />
+   <br>
+   <br>      
+         
+   
+   
+   </body>
+</html>
