@@ -1,4 +1,4 @@
-    var currentLocation = 0;
+      var currentLocation = 0;
       var Score = 0;
       var visitedRoom0 = false;
       var visitedRoom1 = false;
@@ -11,7 +11,8 @@
       var visitedRoom8 = false;
       var visitedRoom9 = false;
       var visitedRoom10 = false;
-      
+      var hasTakenSpray = false;
+      var hasTakenKey   = false;
       function init() {
          look();
       }
@@ -27,14 +28,19 @@
             goWest();
          } else if (txtCommand.value === "h" || txtCommand.value === "H") {
             getHelp();
-         }   
+         } else if ((txtCommand.value === "take") && (currentLocation === 6)) { 
+            takeSpray();
+         } else if ((txtCommand.value === "take") && (currentLocation === 10)) {
+            takeKey();
+         }
          else displayMessage("Invalid command, dummy! Use N, S, E, W or H for HELP!");
             
          }
+         
       
          
       function btnNorth_click() {   
-           goNorth();
+         goNorth();
       }
        
       function btnSouth_click() {
@@ -47,6 +53,10 @@
       
       function btnWest_click() {
          goWest();
+      }
+      
+      function btnInv_click() {
+         displayInv();
       }
       
       function goNorth() {
@@ -117,12 +127,36 @@
       }
       
       function getHelp() {
-         var desc = "Use the commands 'S' or 's' to go South, 'N' or 'n' to go North, 'E' or 'e' to go East, and 'W' or 'w' to go West. Keep track of your location with the handy map. Good luck!"
+         var desc = "Use the commands 'S' or 's' to go South, 'N' or 'n' to go North, 'E' or 'e' to go East, and 'W' or 'w' to go West. Use the 'take' command to pick up any items you come across. Keep track of your location with the handy map. Good luck!"
          displayMessage(desc);
+      }   
+        function takeSpray() {
+         var desc = "You take the insect spray."
+         displayMessage(desc);
+            hasTakenSpray = true;
+   }
+      function takeKey() {
+         var desc = "You take the key."
+         displayMessage(desc);
+            hasTakenKey = true;
       }
       
+      function displayInv() {
+         if (hasTakenSpray === true) {
+               desc = "Spray"
+         } else if (hasTakenSpray === false) {
+               desc = "Inventory is empty."
+         } else if (hasTakenKey === true)    {
+               desc = "" + "Key"
+         } else if (hasTakenKey === false) {
+               desc = "Inventory is empty."
+         } 
+         displayMessage(desc);
+         } 
+      
+    
       function mainCavern() {
-         var   desc = "You enter the main cavern with passages leading to the north, south, east, and west.";
+         var desc = "You enter the main cavern with passages leading to the north, south, east, and west.";
          displayMessage(desc);
             document.getElementById("btnWest").disabled = false;
             document.getElementById("btnNorth").disabled = false;
@@ -138,8 +172,6 @@
             document.getElementById("btnEast").disabled = true;
             document.getElementById("btnSouth").disabled = false;
       }
-      
-      
       
       function libraryRoom () {
          var desc = "You enter the west entrance and find a large library.";
@@ -187,7 +219,7 @@
       }
       
       function supplyCloset() {
-         var desc = "You enter a small supply room to the south that is stocked with insect killer.";
+         var desc = "You enter a small supply room to the south that is stocked with insect killer. You might want to take some, it may come in handy.";
          displayMessage(desc);
             document.getElementById("btnWest").disabled = true;
             document.getElementById("btnNorth").disabled = false;
@@ -226,7 +258,7 @@
       }
       
       function keyRoom() {
-         var desc = "You found a key! This one looks promising.";
+         var desc = "You found a key! This one looks promising. Grab it!";
          displayMessage(desc);
             document.getElementById("btnWest").disabled = true;
             document.getElementById("btnNorth").disabled = false;
@@ -303,6 +335,7 @@
             visitedRoom10 = true;   
          }
       }
+     
       function displayMessage(message) {
          var targetTextArea = document.getElementById("taMain");
          targetTextArea.value = message + "\n\n" + targetTextArea.value; 
