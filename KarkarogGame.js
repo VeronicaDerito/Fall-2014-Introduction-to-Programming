@@ -205,6 +205,7 @@
        }  else if (locArray[currentLocation].hasItem === true) {
             ItemArray[currentLocation].hasTaken = true;
             inventory = ItemArray[currentLocation].name;
+            display("Taken:" + ItemArray[currentLocation].name)
          } 
          
       }
