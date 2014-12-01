@@ -63,10 +63,10 @@
       // Locale Prototype    
          
       function Locale(_id, _name, _description) {
-         this.id = _id;
-         this.name = _name;
-         this.description = _description;
-         this.hasItem = _hasItem
+         this.id 
+         this.name 
+         this.description 
+         this.hasItem 
       }   
       
       
@@ -74,18 +74,15 @@
    
       var locale_0 = new Locale();  
       locale_0.id = 0;
+      locale_0.hasItem = false;
       locale_0.name = "Main Cavern";
       locale_0.description = "You enter a main cavern with passages leading to the north, south, east, and west.";
-      locale_0.hasItem = false;
       
-      
-     
      var locale_1 = new Locale();
       locale_1.id = 1;
+      locale_1.hasItem = false;
       locale_1.name = "Chest Room";
       locale_1.description = "You enter the north entrance and  end up in a room with a massive chest. It is locked.";
-      locale_1.hasItem = false;
-      
       
      var locale_2 = new Locale();
       locale_2.id = 2;
@@ -113,15 +110,17 @@
       
       var locale_6 = new Locale();
       locale_6.id = 6;
+      locale_6.hasItem = true;
       locale_6.name = "Supply Closet";
       locale_6.description = "You enter a small supply room to the south that is stocked with insect killer. You might want to take some, it may come in handy.";
-      locale_6.hasItem = true;
+     
       
       var locale_7 = new Locale();
       locale_7.id = 7;
+      locale_7.hasItem = true;
       locale_7.name = "Map Room";
       locale_7.description = "You pass through a door to the north and find an old classroom. There is a map on one of the desks.";
-      locale_7.hasItem = true;
+      
       
      var locale_8 = new Locale();
       locale_8.id = 8;
@@ -142,27 +141,20 @@
       locale_10.hasItem = true;
       
       
-       var LocaleArray = [];
-           LocaleArray[0] = locale_0;
-           LocaleArray[1] = locale_1;
-           LocaleArray[2] = locale_2;
-           LocaleArray[3] = locale_3;
-           LocaleArray[4] = locale_4;
-           LocaleArray[5] = locale_5;
-           LocaleArray[6] = locale_6;
-           LocaleArray[7] = locale_7;
-           LocaleArray[8] = locale_8;
-           LocaleArray[9] = locale_9;
-           LocaleArray[10] = locale_10;
+       var locArray = [];
+           locArray[0] = locale_0;
+           locArray[1] = locale_1;
+           locArray[2] = locale_2;
+           locArray[3] = locale_3;
+           locArray[4] = locale_4;
+           locArray[5] = locale_5;
+           locArray[6] = locale_6;
+           locArray[7] = locale_7;
+           locArray[8] = locale_8;
+           locArray[9] = locale_9;
+           locArray[10] = locale_10;
            
            
-      
-      
-           
-     
- 
-     
-      
       function btnGo_click() {
          if (txtCommand.value === "n" || txtCommand.value === "N") {
                goNorth();
@@ -185,10 +177,10 @@
          } else if ((txtCommand.value === "take") && (currentLocation === 8)) {
             updateInv();
          }
-         else displayMessage("Invalid command, dummy! Use N, S, E, W or H for HELP!");
+         else display("Invalid command, dummy! Use N, S, E, W or H for HELP!");
             
          }
-   }
+   
          
       function btnNorth_click() {   
          goNorth();
@@ -207,9 +199,9 @@
       }
       
       function updateInv() {
-          if (LocaleArray[currentLocation].hasItem === false) { 
+          if (locArray[currentLocation].hasItem === false) { 
             inventory = ""; 
-       }  else if (LocaleArray[currentLocation].hasItem === true) {
+       }  else if (locArray[currentLocation].hasItem === true) {
             ItemArray[currentLocation].hasTaken = true;
             inventory = ItemArray[currentLocation].name
          } 
@@ -238,9 +230,9 @@
          } else if (currentLocation === 3) {
               currentLocation = 0;   
               document.getElementById("btnWest").disabled = true;
-              document.getElementById("btnNorth").disabled = false;
+              document.getElementById("btnNorth").disabled = true;
               document.getElementById("btnEast").disabled = true;
-              document.getElementById("btnSouth").disabled = false;
+              document.getElementById("btnSouth").disabled = true;
          
          } else if (currentLocation === 1) {
               currentLocation = 1;
@@ -442,16 +434,15 @@
   
       }
       
-     function currentLoc () {
-      display(LocaleArray[currentLocation].description)
-      } 
      
-    
+     
+    function currentLoc() {
+      display(locArray[currentLocation].description)
+      } 
 
  
    
       function look() {
-         var description = "";
         switch(currentLocation) {
             case 0: currentLoc();
                   break;
