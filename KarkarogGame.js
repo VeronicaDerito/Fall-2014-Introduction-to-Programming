@@ -20,10 +20,11 @@
       
       // Item Prototype
     
-      function Item(_id, _name, _hasTaken)  {
-         this.id = _id;
-         this.name = _name;
-         
+      function Item(id,name,hasTaken)  {
+         this.id 
+         this.name 
+         this.hasTaken
+      }   
       
       
       // Item Instances
@@ -203,7 +204,7 @@
             inventory = ""; 
        }  else if (locArray[currentLocation].hasItem === true) {
             ItemArray[currentLocation].hasTaken = true;
-            inventory = ItemArray[currentLocation].name
+            inventory = ItemArray[currentLocation].name;
          } 
          
       }
