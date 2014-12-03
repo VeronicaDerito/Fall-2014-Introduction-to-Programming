@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>
+        Project 2 - Game V0.2
+      </title>
+      
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+      <script type = "text/javascript" src="game.js">
+      
+   // Introduction to Programming: Project 4
+   // Veronica deRito  10/23/14
+  
+   </script>
+   
+   </head>
+     
+   <body onload = "init();">
+   
+      <h1> Caves of Karkarog (Car-ka-rog) </h1>
+      
+         <p> Email any questions!
+         <a href="mailto:vderito2@gmail.com">Send Mail</a>
+         </p>
+         
+    <img src="karkarogmap.jpg" style ="width:400px;">
+   
+   <br>
+   <br>
+         <textarea 
+         rows="10" 
+         cols="60" 
+         id ="taMain"
+         readonly = "readonly"
+         name ="taMain">You are walking through a forest when you spot an aggressive bear. While looking for an escape you spot a hole in the ground a few feet away and quickly lower yourself down through the opening. You are now in a cavern with tunnel entrances to the north, south, east, and west.
+         </textarea>
+   
+  
+   
+   <br>
+   <br>
+   
+   <input  type="text"
+         id ="txtCommand"
+         name ="txtCommand"  />
+         
+   <input type ="button"
+         value ="Go"
+         onclick= "btnGo_click();" />
+   
+   <input type ="button"
+         value ="Inventory"
+            id ="btnInv"
+       onclick ="btnInv_click()" />  
+   <br>
+   <br>
+   <input  type = "button"
+         value="North" 
+         id ="btnNorth"
+         onclick="btnNorth_click()"  />
+         
+   <input    type="button"
+         value="South"
+         id ="btnSouth"
+         onclick="btnSouth_click()" />
+         
+   <input    type="button"
+         value="East"
+         id ="btnEast"
+         onclick="btnEast_click()" />
+         
+   <input    type="button"
+         value="West" 
+         id="btnWest"
+         onclick="btnWest_click()" />
+   <br>
+   <br>    
+   
+ 
+         
+   
+   
+   </body>
+   </html>
