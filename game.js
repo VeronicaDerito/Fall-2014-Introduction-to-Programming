@@ -14,6 +14,7 @@
  
       function init() {
          look();
+         document.getElementById("txtCommand").focus();
       }
      
      
@@ -37,7 +38,7 @@
       
       var ItemKey = new Item ();
       ItemKey.id = 10;
-      ItemKey.name = "Real Key";
+      ItemKey.name = "Key";
       ItemKey.hasTaken = false;
       
       var ItemSpoon = new Item ();
@@ -46,17 +47,22 @@
       ItemKey.hasTaken = false;
  
       
-      var ItemMap = new Item ();
-      ItemMap.id = 7;
-      ItemMap.name = "Map";
-      ItemKey.hasTaken = false;
+      var ItemMachete = new Item ();
+      ItemMachete.id = 7;
+      ItemMachete.name = "Machete";
+      ItemMachete.hasTaken = false;
     
+      var ItemRealKey = new Item ();
+      ItemRealKey.id = 5;
+      ItemRealKey.name = "Real Key"
+      ItemRealKey.hasTaken = false;
       
       var ItemArray = [];
-           ItemArray[6] = ItemSpray;
-           ItemArray[7] = ItemMap;
-           ItemArray[8] = ItemSpoon;
+           ItemArray[6]  = ItemSpray;
+           ItemArray[7]  = ItemMachete;
+           ItemArray[8]  = ItemSpoon;
            ItemArray[10] = ItemKey;
+           ItemArray[5]  = ItemRealKey;
       
       
       
@@ -106,8 +112,8 @@
       var locale_5 = new Locale();
       locale_5.id = 5;
       locale_5.name = "Hive Room";
-      locale_5.description = "You head further south and enter a room with a massive hive.";
-      locale_5.hasItem = false;
+      locale_5.description = "You head further south and enter a room with a massive hive. 'Use' the right equipment to defeat the hive!";
+      locale_5.hasItem = true;
       
       var locale_6 = new Locale();
       locale_6.id = 6;
@@ -119,8 +125,8 @@
       var locale_7 = new Locale();
       locale_7.id = 7;
       locale_7.hasItem = true;
-      locale_7.name = "Map Room";
-      locale_7.description = "You pass through a door to the north and find an old classroom. There is a map on one of the desks.";
+      locale_7.name = "Machete Room";
+      locale_7.description = "You pass through a door to the north and find an old classroom. There is a machete on one of the desks.";
       
       
       var locale_8 = new Locale();
@@ -187,20 +193,26 @@
                goWest();
          } else if (txtCommand.value === "h" || txtCommand.value === "H") {
               getHelp();
-         }else if (txtCommand.value === "i" || txtCommand.value === "I")  {
+         } else if (txtCommand.value === "i" || txtCommand.value === "I")  {
               btnInv_click();
-         } else if ((txtCommand.value === "take") && (currentLocation === 6)) { 
-            updateInv();
-         } else if ((txtCommand.value === "take") && (currentLocation === 10)) {
-            updateInv();  
-         } else if ((txtCommand.value === "take") && (currentLocation === 7)) {
-            updateInv();
-         } else if ((txtCommand.value === "take") && (currentLocation === 8)) {
-            updateInv();
+         } else if (txtCommand.value === "take") {  
+              takeItem(); 
          }
+//         } else if (txtCommand.value === "use")  {
+//              useItem();
+//         } else if ((txtCommand.value === "use") && (currentLocation === 5) && ( ItemSpray.hasTaken === true) && (ItemMachete.hasTaken === true)) {
+//            defeatHive();
+//         } else if ((txtCommand.value === "take") && (currentLocation === 5)) {
+//            updateInv();
+//         } else if ((txtCommand.value === "use") && (ItemSpray.hasTaken === false) || (ItemMachete.hasTaken === false)) {
+//            display("You do not have the proper equipment to take on the hive!") 
+//         } else if ((txtCommand.value === "use") && (ItemRealKey.hasTaken === true))
+//            display("You open the chest to reveal a year's supply of candy corn! Congratulations, you have claimed the treasure of the Caves of Karkarog.")
+            
          else display("Invalid command, dummy! Use N, S, E, W or H for HELP!");
             
          }
+      
    
          
       function btnNorth_click() {   
@@ -225,15 +237,48 @@
             locArray[currentLocation].hasItem = false;
             display("Taken:" + ItemArray[currentLocation].name)
             inventory.push(ItemArray[currentLocation].name);
-          }          
+          } else if (locArray[currentLocation].hasItem === false) {
+          display("There is nothing to take here!")          
+          }
       }
+      
+   
+      
+     
       
       function btnInv_click() {
          updateInv();
          var msg = "Inventory:" + inventory;
          display(msg);
       }
-
+      
+      function takeItem() {
+         switch(currentLocation) {
+            case 0: updateInv();
+                  break;
+            case 1: updateInv();
+                  break;
+            case 2: updateInv();
+                  break;
+            case 3:updateInv();
+                  break;
+            case 4: updateInv();
+                  break;
+            case 5: updateInv();
+                  break;
+            case 6: updateInv();
+                  break;
+            case 7:updateInv();
+                  break;
+            case 8: updateInv();
+                  break;
+            case 9: updateInv();
+                  break;
+            case 10: updateInv();
+                  break;
+            default: description = "There is no item to take here!"
+            }
+      }
       
     
 
@@ -462,3 +507,7 @@
             default: description = "You can't go that way!";      
          }
       }   
+      
+   function defeatHive() {
+        display("You douse the hive with spray until the wasp colony is completely eradicated. You use the machete to cut the hive in half and find a golden key. Gross, but cool. Take it!");
+      }
