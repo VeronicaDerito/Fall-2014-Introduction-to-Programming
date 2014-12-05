@@ -1,4 +1,5 @@
       var currentLocation = 0;
+      var hiveDefeated = false; 
       var Score = 0;
       var visitedRoom0 = false;
       var visitedRoom1 = false;
@@ -238,7 +239,10 @@
           defeatHive();
           } else if ((currentLocation === 1) && (ItemRealKey.hasTaken === true)) {
           openChest();
-          } else display("You cannot use anything here!")
+          } else if ((currentLocation === 1) && (ItemRealKey.hasTaken === false) && (ItemKey.hasTaken === true)) {
+          display ("This appears to be a fake key! Too bad.")
+          }
+           else display("You cannot use anything here!")
           }
       
      
@@ -250,6 +254,7 @@
       }
       
       function takeItem() {
+         
          switch(currentLocation) {
             case 0: updateInv();
                   break;
@@ -261,7 +266,7 @@
                   break;
             case 4: updateInv();
                   break;
-            case 5: updateInv();
+            case 5: killHive();
                   break;
             case 6: updateInv();
                   break;
@@ -278,7 +283,12 @@
       }
       
     
-
+      function killHive () {
+         if (hiveDefeated === true) {
+         updateInv();
+         } else display ("There is no item to take here!")
+         }
+         
       
       function goNorth() {
         nextLoc(NORTH); 
@@ -504,8 +514,10 @@
             default: description = "You can't go that way!";      
          }
       }   
+   
       
    function defeatHive() {
+        hiveDefeated = true;
         display("You douse the hive with spray until the wasp colony is completely eradicated. You use the machete to cut the hive in half and find a golden key. Gross, but cool. Take it!");
       }
    function openChest() {
