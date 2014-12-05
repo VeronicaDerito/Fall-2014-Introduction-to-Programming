@@ -197,19 +197,10 @@
               btnInv_click();
          } else if (txtCommand.value === "take") {  
               takeItem(); 
+         } else if (txtCommand.value === "use")  {
+              useItem();
          }
-//         } else if (txtCommand.value === "use")  {
-//              useItem();
-//         } else if ((txtCommand.value === "use") && (currentLocation === 5) && ( ItemSpray.hasTaken === true) && (ItemMachete.hasTaken === true)) {
-//            defeatHive();
-//         } else if ((txtCommand.value === "take") && (currentLocation === 5)) {
-//            updateInv();
-//         } else if ((txtCommand.value === "use") && (ItemSpray.hasTaken === false) || (ItemMachete.hasTaken === false)) {
-//            display("You do not have the proper equipment to take on the hive!") 
-//         } else if ((txtCommand.value === "use") && (ItemRealKey.hasTaken === true))
-//            display("You open the chest to reveal a year's supply of candy corn! Congratulations, you have claimed the treasure of the Caves of Karkarog.")
-            
-         else display("Invalid command, dummy! Use N, S, E, W or H for HELP!");
+           else display("Invalid command, dummy! Use N, S, E, W or H for HELP!");
             
          }
       
@@ -242,7 +233,13 @@
           }
       }
       
-   
+      function useItem ()  {
+          if ((currentLocation === 5) && (ItemSpray.hasTaken === true) && (ItemMachete.hasTaken === true)) {
+          defeatHive();
+          } else if ((currentLocation === 1) && (ItemRealKey.hasTaken === true)) {
+          openChest();
+          } else display("You cannot use anything here!")
+          }
       
      
       
@@ -460,7 +457,7 @@
 
       
       function getHelp() {
-         var desc = "Use the commands 'S' or 's' to go South, 'N' or 'n' to go North, 'E' or 'e' to go East, and 'W' or 'w' to go West. Use the 'take' command to pick up any items you come across. Keep track of your location with the handy map. Good luck!"
+         var desc = "Use the commands 'S' or 's' to go South, 'N' or 'n' to go North, 'E' or 'e' to go East, and 'W' or 'w' to go West. Use the 'take' command to pick up any items you come across and the 'use' command to use these items when appropriate. Keep track of your location with the handy map. Good luck!"
         display(desc);
   
       }
@@ -511,3 +508,6 @@
    function defeatHive() {
         display("You douse the hive with spray until the wasp colony is completely eradicated. You use the machete to cut the hive in half and find a golden key. Gross, but cool. Take it!");
       }
+   function openChest() {
+         display("You open the chest to reveal a year's supply of candy corn! Congratulations, you have claimed the treasure of the Caves of Karkarog.")
+   }
