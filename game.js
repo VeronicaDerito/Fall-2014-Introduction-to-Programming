@@ -114,7 +114,7 @@
       locale_5.id = 5;
       locale_5.name = "Hive Room";
       locale_5.description = "You head further south and enter a room with a massive hive. 'Use' the right equipment to defeat the hive!";
-      locale_5.hasItem = true;
+      locale_5.hasItem = false;
       
       var locale_6 = new Locale();
       locale_6.id = 6;
@@ -518,6 +518,7 @@
       
    function defeatHive() {
         hiveDefeated = true;
+        locale_5.hasItem = true;
         display("You douse the hive with spray until the wasp colony is completely eradicated. You use the machete to cut the hive in half and find a golden key. Gross, but cool. Take it!");
       }
    function openChest() {
