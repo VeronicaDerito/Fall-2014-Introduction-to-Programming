@@ -1,3 +1,5 @@
+// Game.js
+
       var currentLocation = 0;
       var hiveDefeated = false; 
       var score = 0;

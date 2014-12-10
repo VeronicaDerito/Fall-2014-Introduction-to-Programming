@@ -1,3 +1,6 @@
+// Locations.js
+
+
    // Locale Prototype    
          
       function Locale(_id, _name, _description) {
